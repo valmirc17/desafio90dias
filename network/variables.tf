@@ -16,11 +16,30 @@ variable "virtual_network_name" {
     default = ""
 }
 
+variable "subnet_name" {
+    description = "Nome da sub rede"
+    type = string
+    default = ""
+ }
+
+variable "nic_name" {
+    description = "Nome da interface de rede"
+    type = string
+    default = ""
+  
+}
+
 variable "address_space" {
     description = "Espaço de endereços da rede virtual"
     type = list(string)
     default = []
   
+}
+
+variable "address_prefix" {
+  description = "Pool de endereços da sub rede"
+  type = list(string)
+  default = []
 }
 
 variable "environment" {
