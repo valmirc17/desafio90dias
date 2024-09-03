@@ -9,14 +9,24 @@ resource "azurerm_virtual_network" "vnet" {
     }
 }
 
-resource "azurerm_subnet" "subnet" {
+resource "azurerm_subnet" "subnet_default" {
   name                 = var.subnet_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.address_prefix
-
+  service_endpoints = ["Microsoft.Storage"]
   depends_on = [azurerm_virtual_network.vnet]
 }
+
+resource "azurerm_subnet" "subnet_pe" {
+  name                 = var.subnet_name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = var.address_prefix_pe
+  service_endpoints = ["Microsoft.Storage"]
+  depends_on = [azurerm_virtual_network.vnet]
+}
+
 
 
 resource "azurerm_network_interface" "nic" {
@@ -26,7 +36,7 @@ resource "azurerm_network_interface" "nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.subnet.id
+    subnet_id                     = azurerm_subnet.subnet_pe.id
     private_ip_address_allocation = "Dynamic"
   }
 }

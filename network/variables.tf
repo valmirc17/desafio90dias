@@ -37,7 +37,13 @@ variable "address_space" {
 }
 
 variable "address_prefix" {
-  description = "Pool de endereços da sub rede"
+  description = "Pool de endereços da sub rede padrão"
+  type = list(string)
+  default = []
+}
+
+variable "address_prefix_pe" {
+  description = "Pool de endereços da sub rede do endpoint privado"
   type = list(string)
   default = []
 }

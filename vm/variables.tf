@@ -1,3 +1,4 @@
+/*----------------Criação da VM-------------*/
 variable "vm_name" {
     description = "Nome"
     type = string
@@ -76,4 +77,40 @@ variable "vm_admin_password" {
     description = "Senha do usuário administrador"
     type = string
     default = ""
+}
+
+/*----------------Script de Inicialização-------------*/
+variable "storage_account_name" {
+    description = "Nome da conta de armazenamento"
+    type = string
+    default = ""
+  
+}
+
+variable "storage_container_name" {
+    description = "Nome do container"
+    type = string
+    default = ""
+  
+}
+
+variable "script_blob_name" {
+    description = "Nome do script salvo no blob"
+    type = string
+    default = ""
+  
+}
+
+variable "storage_account_primary_access_key" {
+    description = "Chave de acesso primária"
+    type = string
+    default = ""
+  
+}
+
+variable "self_hosted_auth_key_1" {
+    description = "Chave de acesso primária do self hosted"
+    type = string
+    default = ""
+  
 }
