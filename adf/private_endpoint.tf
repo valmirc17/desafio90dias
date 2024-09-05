@@ -1,5 +1,5 @@
 #--------Zonas privadas de DNS--------#
-
+/*
 # DFS DNS Zone
 resource "azurerm_private_dns_zone" "dfs_privatednszone" {
     name = "privatelink.dfs.core.windows.net"
@@ -87,3 +87,5 @@ resource "azurerm_private_dns_a_record" "privatednsarecord-001" {
   records             = [azurerm_private_endpoint.pe_001.private_service_connection.0.private_ip_address]
   depends_on          = [azurerm_private_endpoint.pe_001]
 }
+
+*/

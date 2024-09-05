@@ -41,6 +41,7 @@ resource "azurerm_storage_blob" "example_blob" {
   source                 = "teste.txt"
 }
 
+/*
 resource "azurerm_storage_account_network_rules" "deny_rule" {
   storage_account_id = azurerm_storage_account.storage_account.id
   
@@ -53,3 +54,4 @@ resource "azurerm_storage_account_network_rules" "deny_rule" {
     azurerm_storage_blob.script_blob
   ]
 }
+*/
