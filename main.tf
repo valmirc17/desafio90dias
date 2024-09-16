@@ -17,10 +17,10 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # Aguardar 10 segundos após a criação do RG para prosseguir com a execução
-resource "time_sleep" "wait_5_seconds" {
+resource "time_sleep" "wait_20_seconds" {
   depends_on = [azurerm_resource_group.rg]
 
-  create_duration = "10s"
+  create_duration = "20s"
 }
 
 
@@ -33,7 +33,7 @@ module "network" {
   nic_name             = var.nic_name
   address_space        = var.address_space
   address_prefix       = var.address_prefix
-  address_prefix_pe = var.address_prefix_pe
+  //address_prefix_pe = var.address_prefix_pe
   environment          = var.environment
   depends_on = [ azurerm_resource_group.rg ]
 }
@@ -68,7 +68,7 @@ module "adf" {
   storage_account_id  = module.blob.storage_account_id
   storage_account_name = var.sa_name
   subnet_def_id = module.network.subnet_def_id
-  subnet_pe_id = module.network.subnet_pe_id
+  //subnet_pe_id = module.network.subnet_pe_id
   vnet_name = module.network.vnet_name
   virtual_network_id = module.network.virtual_network_id
 
