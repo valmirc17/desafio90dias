@@ -76,18 +76,19 @@ function Run-Process([string] $process, [string] $arguments) {
 	return $outContent.Trim()
 }
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 function Download-Gateway([string] $url, [string] $gwPath) {
-	try {
-		$ErrorActionPreference = "Stop";
-		$client = New-Object System.Net.WebClient
-		$client.DownloadFile($url, $gwPath)
-		Trace-Log "Download gateway successfully. Gateway loc: $gwPath"
-	}
-	catch {
-		Trace-Log "Fail to download gateway msi"
-		Trace-Log $_.Exception.ToString()
-		throw
-	}
+    try {
+        $ErrorActionPreference = "Stop";
+        Start-BitsTransfer -Source $url -Destination $gwPath
+        Trace-Log "Download gateway successfully. Gateway loc: $gwPath"
+    }
+    catch {
+        Trace-Log "Fail to download gateway msi"
+        Trace-Log $_.Exception.ToString()
+        throw
+    }
 }
 
 function Install-Gateway([string] $gwPath) {

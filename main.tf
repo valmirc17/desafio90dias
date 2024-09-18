@@ -16,14 +16,6 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-# Aguardar 10 segundos após a criação do RG para prosseguir com a execução
-resource "time_sleep" "wait_20_seconds" {
-  depends_on = [azurerm_resource_group.rg]
-
-  create_duration = "20s"
-}
-
-
 module "network" {
   source               = "./network"
   location             = var.location
@@ -58,6 +50,7 @@ module "vm" {
   script_blob_name = module.blob.script_blob_name
   storage_account_primary_access_key = module.blob.storage_account_primary_access_key
   self_hosted_auth_key_1 = module.adf.self_hosted_auth_key_1
+  depends_on = [ azurerm_resource_group.rg ]
 }
 
 module "adf" {
@@ -71,6 +64,7 @@ module "adf" {
   //subnet_pe_id = module.network.subnet_pe_id
   vnet_name = module.network.vnet_name
   virtual_network_id = module.network.virtual_network_id
+  depends_on = [ azurerm_resource_group.rg ]
 
 }
 
@@ -80,5 +74,6 @@ module "blob" {
   sc_name             = var.sc_name
   resource_group_name = var.resource_group_name
   location            = var.location
+  depends_on = [ azurerm_resource_group.rg ]
 
 }
