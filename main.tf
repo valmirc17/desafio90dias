@@ -61,6 +61,7 @@ module "adf" {
   location            = var.location
   storage_account_id  = module.blob.storage_account_id
   storage_account_name = var.sa_name
+  primary_connection_string = module.blob.primary_connection_string
   subnet_def_id = module.network.subnet_def_id
   //subnet_pe_id = module.network.subnet_pe_id
   vnet_name = module.network.vnet_name

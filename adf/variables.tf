@@ -32,6 +32,12 @@ variable "storage_account_name" {
   
 }
 
+variable "primary_connection_string" {
+    description = ""
+    type = string
+    default = ""
+}
+
 variable "subnet_def_id" {
     description = "ID da sub-rede default"
     type = string
