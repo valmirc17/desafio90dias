@@ -45,8 +45,8 @@ variable "address_prefix" {
 
 variable "address_prefix_pe" {
   description = "Pool de endereços da sub rede do endpoint privado"
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 variable "environment" {
@@ -118,6 +118,48 @@ variable "vm_admin_password" {
 /*----------------Azure Data Factory-------------*/
 variable "adf_name" {
   description = "Nome do recurso"
+  type        = string
+  default     = ""
+
+}
+
+variable "account_name" {
+  description = "Nome da organização do Azure Devops"
+  type        = string
+  default     = ""
+
+}
+
+variable "branch_name" {
+  description = "Nome da branch"
+  type        = string
+  default     = ""
+
+}
+
+variable "project_name" {
+  description = "Nome do projeto"
+  type        = string
+  default     = ""
+
+}
+
+variable "repository_name" {
+  description = "Nome do repositório"
+  type        = string
+  default     = ""
+
+}
+
+variable "root_folder" {
+  description = "Caminho da pasta"
+  type        = string
+  default     = ""
+
+}
+
+variable "tenant_id" {
+  description = "ID do Diretório Padrão (Entra ID)"
   type        = string
   default     = ""
 

@@ -24,7 +24,6 @@ resource "azurerm_storage_container" "storage_container" {
   container_access_type = "private"
 }
 
-
 resource "azurerm_storage_blob" "script_blob" {
   name                   = "adf-shir.ps1"
   storage_account_name   = azurerm_storage_account.storage_account.name
@@ -34,6 +33,7 @@ resource "azurerm_storage_blob" "script_blob" {
   source                 = "gatewayinstall.ps1"
 }
 
+
 resource "azurerm_storage_blob" "example_blob" {
   name                   = "testeblob.txt"
   storage_account_name   = azurerm_storage_account.storage_account.name
@@ -42,7 +42,6 @@ resource "azurerm_storage_blob" "example_blob" {
   source                 = "teste.txt"
 }
 
-/*
 resource "azurerm_storage_account_network_rules" "deny_rule" {
   storage_account_id = azurerm_storage_account.storage_account.id
   
@@ -55,4 +54,4 @@ resource "azurerm_storage_account_network_rules" "deny_rule" {
     azurerm_storage_blob.script_blob
   ]
 }
-*/
+

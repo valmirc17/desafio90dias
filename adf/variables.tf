@@ -19,6 +19,48 @@ variable "resource_group_name" {
   
 }
 
+variable "account_name" {
+    description = "Nome da organização do Azure Devops"
+    type = string
+    default = ""
+  
+}
+
+variable "branch_name" {
+    description = "Nome da branch"
+    type = string
+    default = ""
+  
+}
+
+variable "project_name" {
+    description = "Nome do projeto"
+    type = string
+    default = ""
+  
+}
+
+variable "repository_name" {
+    description = "Nome do repositório"
+    type = string
+    default = ""
+  
+}
+
+variable "root_folder" {
+    description = "Caminho da pasta"
+    type = string
+    default = ""
+  
+}
+
+variable "tenant_id" {
+    description = "ID do Diretório Padrão (Entra ID)"
+    type = string
+    default = ""
+  
+}
+
 variable "storage_account_id" {
     description = "ID da conta de armazenamento"
     type = string
