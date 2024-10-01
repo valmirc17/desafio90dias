@@ -18,6 +18,7 @@ resource "azurerm_subnet" "subnet_default" {
   depends_on = [azurerm_virtual_network.vnet]
 }
 
+/*
 resource "azurerm_subnet" "subnet_pe" {
   name                 = var.subnet_name
   resource_group_name  = var.resource_group_name
@@ -26,7 +27,7 @@ resource "azurerm_subnet" "subnet_pe" {
   service_endpoints = ["Microsoft.Storage"]
   depends_on = [azurerm_virtual_network.vnet]
 }
-
+*/
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "terraform-public-ip"

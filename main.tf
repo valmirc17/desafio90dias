@@ -25,11 +25,11 @@ module "network" {
   nic_name             = var.nic_name
   address_space        = var.address_space
   address_prefix       = var.address_prefix
-  address_prefix_pe    = var.address_prefix_pe
+  //address_prefix_pe    = var.address_prefix_pe
   environment          = var.environment
   depends_on           = [azurerm_resource_group.rg]
 }
-
+/*
 module "vm" {
   source               = "./vm"
   network_interface_id = module.network.network_interface_id
@@ -52,7 +52,7 @@ module "vm" {
   self_hosted_auth_key_1             = module.adf.self_hosted_auth_key_1
   depends_on                         = [azurerm_resource_group.rg]
 }
-
+*/
 
 module "adf" {
   source                    = "./adf"
@@ -69,7 +69,7 @@ module "adf" {
   storage_account_name      = var.sa_name
   primary_connection_string = module.blob.primary_connection_string
   subnet_def_id             = module.network.subnet_def_id
-  subnet_pe_id              = module.network.subnet_pe_id
+  //subnet_pe_id              = module.network.subnet_pe_id
   vnet_name                 = module.network.vnet_name
   virtual_network_id        = module.network.virtual_network_id
   depends_on                = [azurerm_resource_group.rg]

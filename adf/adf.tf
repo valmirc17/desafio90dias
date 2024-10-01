@@ -42,8 +42,8 @@ resource "azurerm_data_factory_pipeline" "get_last_file" {
     azurerm_data_factory_dataset_azure_blob.list_files_especific
   ]
   variables = {
-    latestModifiedDate = "String"
-    latestFileName     = "String"
+    latestModifiedDate = ""
+    latestFileName     = ""
   }
 
   activities_json = <<JSON
@@ -189,7 +189,9 @@ resource "azurerm_data_factory_trigger_schedule" "repeat_trigger" {
   frequency       = "Day"
 }
 
+/*
 resource "azurerm_data_factory_integration_runtime_self_hosted" "shir" {
   name                = "adf-poc-shir"
   data_factory_id     = azurerm_data_factory.adf.id
 }
+*/

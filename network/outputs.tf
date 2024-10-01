@@ -7,10 +7,12 @@ output "subnet_def_id" {
   
 }
 
+/*
 output "subnet_pe_id" {
     value = azurerm_subnet.subnet_pe.id
   
 }
+*/
 
 output "vnet_name" {
     value = azurerm_virtual_network.vnet.name

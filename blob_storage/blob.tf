@@ -34,14 +34,15 @@ resource "azurerm_storage_blob" "script_blob" {
 }
 
 
-resource "azurerm_storage_blob" "example_blob" {
-  name                   = "testeblob.txt"
+resource "azurerm_storage_blob" "matricula_blob" {
+  name                   = "matricula.csv"
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = azurerm_storage_container.storage_container.name
   type                   = "Block"
-  source                 = "teste.txt"
+  source                 = "matricula.csv"
 }
 
+/*
 resource "azurerm_storage_account_network_rules" "deny_rule" {
   storage_account_id = azurerm_storage_account.storage_account.id
   
@@ -54,4 +55,4 @@ resource "azurerm_storage_account_network_rules" "deny_rule" {
     azurerm_storage_blob.script_blob
   ]
 }
-
+*/
