@@ -63,6 +63,6 @@ Este projeto utiliza Terraform para automatizar o provisionamento de recursos na
     * `terraform plan`: Gera um plano de execução que mostra as alterações que serão feitas
     * `terraform apply --auto-approve`: Aplica as alterações, aprova automaticamente e provisiona os recursos na Azure
 4. **Configuração do Azure DevOps**
-  Certifique-se de que o repositório Git privado no Azure DevOps esteja corretamente configurado e sincronizado com o ADF.
+   Certifique-se de que o repositório Git privado no Azure DevOps esteja corretamente configurado e sincronizado com o ADF.
 
 
