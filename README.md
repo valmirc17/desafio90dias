@@ -32,25 +32,26 @@ Este projeto utiliza Terraform para automatizar o provisionamento de recursos na
  * Azure CLI configurado e autenticado.
 
 **Estrutura do projeto**
-├── adf
-│   ├── adf.tf                  # Configuração do Azure Data Factory
-│   ├── outputs.tf              # Outputs específicos do ADF
-│   ├── private_endpoints.tf    # Configuração dos endpoints privados do ADF
-│   └── variables.tf            # Variáveis do módulo ADF
-├── blob-storage
-│   ├── blob.tf                 # Configuração do Blob Storage
-│   ├── outputs.tf              # Outputs específicos do Blob Storage
-│   └── variables.tf            # Variáveis do módulo Blob Storage
-├── network
-│   ├── network.tf              # Configuração da rede (VNet e Subnet)
-│   ├── outputs.tf              # Outputs específicos da rede
-│   └── variables.tf            # Variáveis do módulo de rede
-├── vm
-│   ├── variables.tf            # Variáveis da VM
-│   └── vm.tf                   # Configuração da Virtual Machine e Integration Runtime
-├── main.tf                     # Código principal que conecta todos os módulos
-├── variables.tf                # Variáveis globais do projeto
-└── README.md                   # Documentação do projeto
+- **adf/**
+  - `adf.tf`: Configuração do Azure Data Factory
+  - `outputs.tf`: Outputs específicos do ADF
+  - `private_endpoints.tf`: Configuração dos endpoints privados do ADF
+  - `variables.tf`: Variáveis do módulo ADF
+- **blob-storage/**
+  - `blob.tf`: Configuração do Blob Storage
+  - `outputs.tf`: Outputs específicos do Blob Storage
+  - `variables.tf`: Variáveis do módulo Blob Storage
+- **network/**
+  - `network.tf`: Configuração da rede (VNet e Subnet)
+  - `outputs.tf`: Outputs específicos da rede
+  - `variables.tf`: Variáveis do módulo de rede
+- **vm/**
+  - `variables.tf`: Variáveis da VM
+  - `vm.tf`: Configuração da Virtual Machine e Integration Runtime
+- `main.tf`: Código principal que conecta todos os módulos
+- `variables.tf`: Variáveis globais do projeto
+- `README.md`: Documentação do projeto
+
 
 
 **Como executar o projeto**
