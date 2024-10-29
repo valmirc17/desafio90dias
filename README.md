@@ -52,6 +52,7 @@ Este projeto utiliza Terraform para automatizar o provisionamento de recursos na
 ├── variables.tf                # Variáveis globais do projeto
 └── README.md                   # Documentação do projeto
 
+
 **Como executar o projeto**
 1. **Clone o Repositório:** Clone este repositório GitHub para sua máquina local.
 2. **Configure as Variáveis:** Edite o arquivo `variables.tf` no diretório raiz do projeto e defina as variáveis de acordo com seu ambiente:
