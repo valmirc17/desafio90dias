@@ -1,10 +1,10 @@
-☁️:# Implementação de Azure Data Factory em Ambiente Privado
+☁️# Implementação de Azure Data Factory em Ambiente Privado
 
-📝:## Descrição
+📝## Descrição
 
 Este projeto utiliza Terraform para automatizar o provisionamento de recursos na Microsoft Azure em um ambiente privado. O projeto cria e configura uma Virtual Machine (VM) Windows, um Azure Data Factory (ADF) em rede privada, Blob Storage, e o Integration Runtime (IR) na VM. O ADF é sincronizado com um repositório privado no Azure DevOps e pipelines são automaticamente implantadas para integração com o Blob Storage.
 
-💻:**Recursos provisionados**
+💻**Recursos provisionados**
 
 * Azure Data Factory (ADF)
   * Provisionado em uma rede privada.
@@ -25,13 +25,13 @@ Este projeto utiliza Terraform para automatizar o provisionamento de recursos na
   * Sincronização automática do ADF com o repositório Git privado no Azure DevOps.
   * Deploy automatizado de pipelines ADF para processar dados do Blob Storage.
 
-✔️:**Pré-requisitos**
+✔️**Pré-requisitos**
  * Conta Azure com permissões para criar recursos.
  * Repositório Git privado no Azure DevOps configurado.
  * Máquina com Terraform instalado.
  * Azure CLI configurado e autenticado.
 
-📂:**Estrutura do projeto**
+📂**Estrutura do projeto**
 - **adf/**
   - `adf.tf`: Configuração do Azure Data Factory
   - `outputs.tf`: Outputs específicos do ADF
