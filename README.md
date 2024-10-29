@@ -6,30 +6,30 @@ Este projeto utiliza Terraform para automatizar o provisionamento de recursos na
 
 **Recursos provisionados**
 
-*Azure Data Factory (ADF)
-  *Provisionado em uma rede privada.
-  *Sincronizado com um repositório Git privado no Azure DevOps.
-  *Configurado para realizar automação de pipelines utilizando o Blob Storage.
+* Azure Data Factory (ADF)
+  * Provisionado em uma rede privada.
+  * Sincronizado com um repositório Git privado no Azure DevOps.
+  * Configurado para realizar automação de pipelines utilizando o Blob Storage.
   
-*Virtual Machine (VM)
-  *VM Windows provisionada em uma Virtual Network (VNet) privada.
-  *Utilizada para a instalação do Integration Runtime (IR) e conexão com o ADF.
+* Virtual Machine (VM)
+  * VM Windows provisionada em uma Virtual Network (VNet) privada.
+  * Utilizada para a instalação do Integration Runtime (IR) e conexão com o ADF.
   
-*Blob Storage
-  *Criação e configuração de uma conta de armazenamento do tipo Blob para interação com o ADF.
+* Blob Storage
+  * Criação e configuração de uma conta de armazenamento do tipo Blob para interação com o ADF.
   
-*Integration Runtime (IR)
-  *Instalado e configurado na VM para conectar-se ao ADF e suportar a movimentação de dados em rede privada.
+* Integration Runtime (IR)
+  * Instalado e configurado na VM para conectar-se ao ADF e suportar a movimentação de dados em rede privada.
   
-*Azure DevOps Pipeline
-  *Sincronização automática do ADF com o repositório Git privado no Azure DevOps.
-  *Deploy automatizado de pipelines ADF para processar dados do Blob Storage.
+* Azure DevOps Pipeline
+  * Sincronização automática do ADF com o repositório Git privado no Azure DevOps.
+  * Deploy automatizado de pipelines ADF para processar dados do Blob Storage.
 
 **Pré-requisitos**
-  *Conta Azure com permissões para criar recursos.
-  *Repositório Git privado no Azure DevOps configurado.
-  *Máquina com Terraform instalado.
-  *Azure CLI configurado e autenticado.
+ * Conta Azure com permissões para criar recursos.
+ * Repositório Git privado no Azure DevOps configurado.
+ * Máquina com Terraform instalado.
+ * Azure CLI configurado e autenticado.
 
 **Estrutura do projeto**
 
