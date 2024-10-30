@@ -75,7 +75,7 @@ module "adf" {
   depends_on                = [azurerm_resource_group.rg]
 
 }
-
+/*
 module "blob" {
   source              = "./blob_storage"
   sa_name             = var.sa_name
@@ -85,3 +85,4 @@ module "blob" {
   depends_on          = [azurerm_resource_group.rg]
 
 }
+*/
