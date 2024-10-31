@@ -18,10 +18,19 @@ resource "azurerm_storage_account" "storage_account" {
   
 }
 
+# Debug Status=404 Code="ResourceNotFound ao criar o Storage Container
+resource "random_string" "id" {
+  length  = 4
+  upper   = false
+  special = false
+}
+
 resource "azurerm_storage_container" "storage_container" {
   name                  = var.sc_name
   storage_account_name  = azurerm_storage_account.storage_account.name
   container_access_type = "private"
+
+  //depends_on = [ azurerm_storage_account.storage_account ]
 }
 
 resource "azurerm_storage_blob" "script_blob" {

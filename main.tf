@@ -22,7 +22,7 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-/*
+
 module "network" {
   source               = "./network"
   location             = var.location
@@ -36,7 +36,7 @@ module "network" {
   environment          = var.environment
   depends_on           = [azurerm_resource_group.rg]
 }
-
+/*
 module "vm" {
   source               = "./vm"
   network_interface_id = module.network.network_interface_id
@@ -59,7 +59,7 @@ module "vm" {
   self_hosted_auth_key_1             = module.adf.self_hosted_auth_key_1
   depends_on                         = [azurerm_resource_group.rg]
 }
-
+*/
 module "adf" {
   source                    = "./adf"
   adf_name                  = var.adf_name
@@ -91,4 +91,4 @@ module "blob" {
   depends_on          = [azurerm_resource_group.rg]
 
 }
-*/
+
