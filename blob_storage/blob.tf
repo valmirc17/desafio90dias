@@ -26,11 +26,10 @@ resource "random_string" "id" {
 }
 
 resource "azurerm_storage_container" "storage_container" {
-  name                  = var.sc_name
+  name                  = "${var.sc_name}${random_string.id}"
   storage_account_name  = azurerm_storage_account.storage_account.name
   container_access_type = "private"
 
-  //depends_on = [ azurerm_storage_account.storage_account ]
 }
 
 resource "azurerm_storage_blob" "script_blob" {
@@ -39,7 +38,7 @@ resource "azurerm_storage_blob" "script_blob" {
   storage_container_name = azurerm_storage_container.storage_container.name
   type                   = "Block"
   access_tier            = "Cool"
-  source                 = "gatewayinstall.ps1"
+  source                 = "./files/gatewayinstall.ps1"
 }
 
 
@@ -48,7 +47,7 @@ resource "azurerm_storage_blob" "matricula_blob" {
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = azurerm_storage_container.storage_container.name
   type                   = "Block"
-  source                 = "matricula.csv"
+  source                 = "./files/matricula.csv"
 }
 
 /*
