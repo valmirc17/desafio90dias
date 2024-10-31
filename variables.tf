@@ -55,7 +55,7 @@ variable "environment" {
   default     = ""
 }
 
-/*----------------Máquina Virtual-------------*/
+/*----------------VM-------------*/
 variable "vm_name" {
   description = "Nome"
   type        = string
