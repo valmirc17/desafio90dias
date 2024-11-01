@@ -56,13 +56,13 @@ Este projeto utiliza Terraform para automatizar o provisionamento de recursos na
 
 <span>&#9881;</span> **Como executar o projeto**
 1. **Clone o Repositório:** Clone este repositório GitHub para sua máquina local.
-2. **Configure as Variáveis:** Edite o arquivo `variables.tf` no diretório raiz do projeto e defina as variáveis de acordo com seu ambiente:
-
-3. **Inicialize o Terraform:** Abra um terminal no diretório raiz do projeto e execute os seguintes comandos:
+2. **Configure as Variáveis:** Edite o arquivo `terraform.tfvars` no diretório raiz do projeto e defina as variáveis de acordo com seu ambiente:
+   Obs.: Há um arquivo `terraform.tfvars` compactado para que possa ser utilizado em ambiente de desenvolvimento.
+4. **Inicialize o Terraform:** Abra um terminal no diretório raiz do projeto e execute os seguintes comandos:
     * `terraform init`: Inicializa o Terraform e baixa os provedores necessários
     * `terraform plan`: Gera um plano de execução que mostra as alterações que serão feitas
     * `terraform apply --auto-approve`: Aplica as alterações, aprova automaticamente e provisiona os recursos na Azure
-4. **Configuração do Azure DevOps**
+5. **Configuração do Azure DevOps**
    Certifique-se de que o repositório Git privado no Azure DevOps esteja corretamente configurado e sincronizado com o ADF.
 
 
