@@ -12,9 +12,9 @@ provider "azurerm" {
 
   }
   subscription_id = var.subscription_id
-  client_id = var.client_id
-  client_secret = var.client_secret
-  tenant_id = var.tenant_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -33,8 +33,8 @@ module "network" {
   address_space        = var.address_space
   address_prefix       = var.address_prefix
   //address_prefix_pe    = var.address_prefix_pe
-  environment          = var.environment
-  depends_on           = [azurerm_resource_group.rg]
+  environment = var.environment
+  depends_on  = [azurerm_resource_group.rg]
 }
 /*
 module "vm" {
@@ -73,12 +73,13 @@ module "adf" {
   tenant_id                 = var.tenant_id
   storage_account_id        = module.blob.storage_account_id
   storage_account_name      = var.sa_name
+  storage_container_name    = var.sc_name
   primary_connection_string = module.blob.primary_connection_string
   subnet_def_id             = module.network.subnet_def_id
   //subnet_pe_id              = module.network.subnet_pe_id
-  vnet_name                 = module.network.vnet_name
-  virtual_network_id        = module.network.virtual_network_id
-  depends_on                = [azurerm_resource_group.rg]
+  vnet_name          = module.network.vnet_name
+  virtual_network_id = module.network.virtual_network_id
+  depends_on         = [azurerm_resource_group.rg]
 
 }
 

@@ -1,0 +1,252 @@
+[
+    {
+        "name": "GetFileList",
+        "type": "GetMetadata",
+        "dependsOn": [],
+        "policy": {
+            "timeout": "0.12:00:00",
+            "retry": 0,
+            "retryIntervalInSeconds": 30,
+            "secureOutput": false,
+            "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+            "dataset": {
+                "referenceName": "ListFiles",
+                "type": "DatasetReference"
+            },
+            "fieldList": [
+                "childItems"
+            ],
+            "storeSettings": {
+                "type": "AzureBlobStorageReadSettings",
+                "recursive": true,
+                "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+                "type": "BinaryReadSettings"
+            }
+        }
+    },
+    {
+        "name": "FilterFile",
+        "type": "ForEach",
+        "dependsOn": [
+            {
+                "activity": "GetFileList",
+                "dependencyConditions": [
+                    "Succeeded"
+                ]
+            }
+        ],
+        "userProperties": [],
+        "typeProperties": {
+            "items": {
+                "value": "@activity('GetFileList').output.childItems",
+                "type": "Expression"
+            },
+            "isSequential": true,
+            "activities": [
+                {
+                    "name": "GetFileMetadata",
+                    "type": "GetMetadata",
+                    "dependsOn": [],
+                    "policy": {
+                        "timeout": "0.12:00:00",
+                        "retry": 0,
+                        "retryIntervalInSeconds": 30,
+                        "secureOutput": false,
+                        "secureInput": false
+                    },
+                    "userProperties": [],
+                    "typeProperties": {
+                        "dataset": {
+                            "referenceName": "ListEspecific",
+                            "type": "DatasetReference"
+                        },
+                        "fieldList": [
+                            "lastModified"
+                        ],
+                        "storeSettings": {
+                            "type": "AzureBlobStorageReadSettings",
+                            "recursive": true,
+                            "enablePartitionDiscovery": false
+                        },
+                        "formatSettings": {
+                            "type": "BinaryReadSettings"
+                        }
+                    }
+                },
+                {
+                    "name": "IfNewer",
+                    "type": "IfCondition",
+                    "dependsOn": [
+                        {
+                            "activity": "GetFileMetadata",
+                            "dependencyConditions": [
+                                "Succeeded"
+                            ]
+                        }
+                    ],
+                    "userProperties": [],
+                    "typeProperties": {
+                        "expression": {
+                            "value": "@greater(activity('GetFileMetadata').output.lastModified, variables('latestModifiedDate'))",
+                            "type": "Expression"
+                        },
+                        "ifTrueActivities": [
+                            {
+                                "name": "SetLatestModifiedDate",
+                                "type": "SetVariable",
+                                "dependsOn": [],
+                                "policy": {
+                                    "secureOutput": false,
+                                    "secureInput": false
+                                },
+                                "userProperties": [],
+                                "typeProperties": {
+                                    "variableName": "latestModifiedDate",
+                                    "value": {
+                                        "value": "@activity('GetFileMetadata').output.lastModified",
+                                        "type": "Expression"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "SetLatestFileName",
+                                "type": "SetVariable",
+                                "dependsOn": [],
+                                "policy": {
+                                    "secureOutput": false,
+                                    "secureInput": false
+                                },
+                                "userProperties": [],
+                                "typeProperties": {
+                                    "variableName": "latestFileName",
+                                    "value": {
+                                        "value": "@item().name",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "name": "GenerateCode",
+        "type": "SetVariable",
+        "dependsOn": [
+            {
+                "activity": "FilterFile",
+                "dependencyConditions": [
+                    "Succeeded"
+                ]
+            }
+        ],
+        "policy": {
+            "secureOutput": false,
+            "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+            "variableName": "matricula",
+            "value": {
+                "value": "@{replace(replace(string(rand(100000, 1000000)), '\\n', ''),'\\r','')}",
+                "type": "Expression"
+            }
+        }
+    },
+    {
+        "name": "SaveFile",
+        "type": "Copy",
+        "dependsOn": [
+            {
+                "activity": "GenerateCode",
+                "dependencyConditions": [
+                    "Succeeded"
+                ]
+            }
+        ],
+        "policy": {
+            "timeout": "0.12:00:00",
+            "retry": 0,
+            "retryIntervalInSeconds": 30,
+            "secureOutput": false,
+            "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+            "source": {
+                "type": "DelimitedTextSource",
+                "additionalColumns": [
+                    {
+                        "name": "matricula",
+                        "value": {
+                            "value": "@variables('matricula')",
+                            "type": "Expression"
+                        }
+                    }
+                ],
+                "storeSettings": {
+                    "type": "AzureBlobStorageReadSettings",
+                    "recursive": true,
+                    "wildcardFileName": {
+                        "value": "@variables('latestFileName')",
+                        "type": "Expression"
+                    },
+                    "enablePartitionDiscovery": false
+                },
+                "formatSettings": {
+                    "type": "DelimitedTextReadSettings"
+                }
+            },
+            "sink": {
+                "type": "DelimitedTextSink",
+                "storeSettings": {
+                    "type": "AzureBlobStorageWriteSettings"
+                },
+                "formatSettings": {
+                    "type": "DelimitedTextWriteSettings",
+                    "quoteAllText": true,
+                    "fileExtension": ".txt"
+                }
+            },
+            "enableStaging": false,
+            "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                    {
+                        "source": {
+                            "name": "matricula",
+                            "type": "String"
+                        },
+                        "sink": {
+                            "ordinal": 1
+                        }
+                    }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                }
+            }
+        },
+        "inputs": [
+            {
+                "referenceName": "ListCsvFiles",
+                "type": "DatasetReference"
+            }
+        ],
+        "outputs": [
+            {
+                "referenceName": "SaveCsvFile",
+                "type": "DatasetReference"
+            }
+        ]
+    }
+]

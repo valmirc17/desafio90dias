@@ -1,21 +1,21 @@
 /*----------------Provider-------------*/
 variable "subscription_id" {
   description = "ID da assinatura Azure"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 variable "client_id" {
   description = "Client ID da aplicação"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 variable "client_secret" {
   description = "Secret key da assinatura"
-  type = string
-  default = ""
-  
+  type        = string
+  default     = ""
+
 }
 
 /*----------------Network-------------*/

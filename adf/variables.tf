@@ -74,6 +74,13 @@ variable "storage_account_name" {
   
 }
 
+variable "storage_container_name" {
+    description = "Nome da conta de armazenamento"
+    type = string
+    default = ""
+  
+}
+
 variable "primary_connection_string" {
     description = ""
     type = string

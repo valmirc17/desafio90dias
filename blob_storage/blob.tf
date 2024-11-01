@@ -26,12 +26,12 @@ resource "random_string" "id" {
 }
 
 resource "azurerm_storage_container" "storage_container" {
-  name                  = "${var.sc_name}${random_string.id}"
+  name                  = var.sc_name
   storage_account_name  = azurerm_storage_account.storage_account.name
   container_access_type = "private"
 
 }
-
+/*
 resource "azurerm_storage_blob" "script_blob" {
   name                   = "adf-shir.ps1"
   storage_account_name   = azurerm_storage_account.storage_account.name
@@ -40,7 +40,7 @@ resource "azurerm_storage_blob" "script_blob" {
   access_tier            = "Cool"
   source                 = "./files/gatewayinstall.ps1"
 }
-
+*/
 
 resource "azurerm_storage_blob" "matricula_blob" {
   name                   = "matricula.csv"
