@@ -96,10 +96,7 @@ resource "azurerm_data_factory_trigger_schedule" "repeat_trigger" {
   start_time     = "2024-11-01T09:00:00Z"
 }
 
-
-/*
 resource "azurerm_data_factory_integration_runtime_self_hosted" "shir" {
   name                = "adf-poc-shir"
   data_factory_id     = azurerm_data_factory.adf.id
 }
-*/

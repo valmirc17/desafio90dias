@@ -14,6 +14,8 @@ resource "azurerm_private_dns_zone_virtual_network_link" "dnszone-vnetlink-00" {
   depends_on = [ azurerm_private_dns_zone.dfs_privatednszone ]
 }
 
+
+
 # Blob DNS Zone
 
 resource "azurerm_private_dns_zone" "blob_privatednszone" {
@@ -87,4 +89,37 @@ resource "azurerm_private_dns_a_record" "privatednsarecord-001" {
   records             = [azurerm_private_endpoint.pe_001.private_service_connection.0.private_ip_address]
   depends_on          = [azurerm_private_endpoint.pe_001]
 }
+*/
+
+
+/*
+ADF
+resource "azurerm_private_endpoint" "adf_blob_pe" {
+  name                = "${var.adf_name}-blob"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id           = var.subnet_pe_id
+  
+  private_service_connection {
+    name                           = "${var.adf_name}-blob-connection"
+    private_connection_resource_id = var.blob_storage_id
+    is_manual_connection           = false
+    subresource_names              = ["blob"]
+  }
+
+  private_dns_zone_group {
+    name                 = azurerm_private_dns_zone.blob_privatednszone.name
+    private_dns_zone_ids = [azurerm_private_dns_zone.blob_privatednszone.id]
+  }
+}
+
+resource "azurerm_private_dns_a_record" "privatednsarecord_adf_blob" {
+  name                = azurerm_private_endpoint.adf_blob_pe.name
+  zone_name           = azurerm_private_dns_zone.blob_privatednszone.name
+  resource_group_name = var.resource_group_name
+  ttl                 = "300"
+  records             = [azurerm_private_endpoint.adf_blob_pe.private_service_connection.0.private_ip_address]
+  depends_on          = [azurerm_private_endpoint.adf_blob_pe]
+}
+
 */

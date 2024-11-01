@@ -31,7 +31,7 @@ resource "azurerm_storage_container" "storage_container" {
   container_access_type = "private"
 
 }
-/*
+
 resource "azurerm_storage_blob" "script_blob" {
   name                   = "adf-shir.ps1"
   storage_account_name   = azurerm_storage_account.storage_account.name
@@ -40,7 +40,7 @@ resource "azurerm_storage_blob" "script_blob" {
   access_tier            = "Cool"
   source                 = "./files/gatewayinstall.ps1"
 }
-*/
+
 
 resource "azurerm_storage_blob" "matricula_blob" {
   name                   = "matricula.csv"
