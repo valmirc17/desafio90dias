@@ -7,7 +7,11 @@ output "storage_account_name" {
 }
 
 output "storage_container_name" {
-    value = azurerm_storage_container.storage_container.name
+    value = azurerm_storage_container.storage_container_adf.name
+}
+
+output "storage_container_vm_name" {
+    value = azurerm_storage_container.storage_container_vm.name
 }
 
 output "script_blob_name" {

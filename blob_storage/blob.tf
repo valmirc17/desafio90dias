@@ -18,15 +18,15 @@ resource "azurerm_storage_account" "storage_account" {
   
 }
 
-# Debug Status=404 Code="ResourceNotFound ao criar o Storage Container
-resource "random_string" "id" {
-  length  = 4
-  upper   = false
-  special = false
+resource "azurerm_storage_container" "storage_container_adf" {
+  name                  = var.sc_name
+  storage_account_name  = azurerm_storage_account.storage_account.name
+  container_access_type = "private"
+
 }
 
-resource "azurerm_storage_container" "storage_container" {
-  name                  = var.sc_name
+resource "azurerm_storage_container" "storage_container_vm" {
+  name                  = var.sc_vm_name
   storage_account_name  = azurerm_storage_account.storage_account.name
   container_access_type = "private"
 
@@ -35,7 +35,7 @@ resource "azurerm_storage_container" "storage_container" {
 resource "azurerm_storage_blob" "script_blob" {
   name                   = "adf-shir.ps1"
   storage_account_name   = azurerm_storage_account.storage_account.name
-  storage_container_name = azurerm_storage_container.storage_container.name
+  storage_container_name = azurerm_storage_container.storage_container_vm.name
   type                   = "Block"
   access_tier            = "Cool"
   source                 = "./files/gatewayinstall.ps1"
@@ -45,7 +45,7 @@ resource "azurerm_storage_blob" "script_blob" {
 resource "azurerm_storage_blob" "matricula_blob" {
   name                   = "matricula.csv"
   storage_account_name   = azurerm_storage_account.storage_account.name
-  storage_container_name = azurerm_storage_container.storage_container.name
+  storage_container_name = azurerm_storage_container.storage_container_adf.name
   type                   = "Block"
   source                 = "./files/matricula.csv"
 }

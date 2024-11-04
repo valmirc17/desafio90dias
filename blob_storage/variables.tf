@@ -11,6 +11,13 @@ variable "sc_name" {
   
 }
 
+variable "sc_vm_name" {
+  description = "Nome do container específico para a VM"
+  type        = string
+  default     = ""
+
+}
+
 variable "resource_group_name" {
     description = "Nome do grupo de recursos"
     type = string

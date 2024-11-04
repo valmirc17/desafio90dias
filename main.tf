@@ -53,7 +53,7 @@ module "vm" {
   vm_version           = var.vm_version
 
   storage_account_name               = module.blob.storage_account_name
-  storage_container_name             = module.blob.storage_container_name
+  storage_container_name             = module.blob.storage_container_vm_name
   script_blob_name                   = module.blob.script_blob_name
   storage_account_primary_access_key = module.blob.storage_account_primary_access_key
   self_hosted_auth_key_1             = module.adf.self_hosted_auth_key_1
@@ -87,6 +87,7 @@ module "blob" {
   source              = "./blob_storage"
   sa_name             = var.sa_name
   sc_name             = var.sc_name
+  sc_vm_name             = var.sc_vm_name
   resource_group_name = var.resource_group_name
   location            = var.location
   depends_on          = [azurerm_resource_group.rg]

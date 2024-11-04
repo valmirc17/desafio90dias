@@ -198,3 +198,10 @@ variable "sc_name" {
   default     = ""
 
 }
+
+variable "sc_vm_name" {
+  description = "Nome do container específico para a VM"
+  type        = string
+  default     = ""
+
+}
